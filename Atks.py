@@ -7,11 +7,31 @@ from classesassing import *
 from time import sleep 
 import re
 import random
+danobase = 0
+criticalhit1 = 0
+danodobrado = 0
+danodobradoecrit = 0
+danobaseatordoado = 0
+danocriticoatordoado = 0
+cooldown = -1
+atordoamentochance = 0
+queimadurachance = 0
+foicritico = random.randint(1, 100)
+atordoou = random.randint(1, 100)
 async def efeitos():
         global reflection
+        global danobase1
+        global criticalhit1
+        global danodobrado
+        global danodobradoecrit
+        global danocriticoatordoado
+        global danobaseatordoado
+        global cooldown
+        global atordoamentochance
+        global queimadurachance
         reflection = False
         smoke = False
-        wildpower = 'WILD POWER'
+        vuneravel = 'VUNERAVEL' in jogadorreceptorclass.status
         if vuneravel != False:
             danobase1 += 1
             criticalhit1 += 1
@@ -46,8 +66,8 @@ async def efeitos():
         if jogadores in jogadorreceptor != False:
           if smok != False:
             word = 'SMOKE BOMB'
-            pat = re.compiler'\b{}\b \b\w+\b'.formatword 
-            pats = pat.findalljogadordaactclass.status
+            pat = re.compiler('\b{}\b \b\w+\b'.formatword)
+            pats = pat.findall(jogadordaactclass.status)
             pats = strpats
             pats = pats.replace('[', '')
             pats = pats.replace(']', '')
@@ -73,8 +93,8 @@ async def efeitos():
             smoke = True
           if 'TAUNT' in jogadordaactclass.status != False:
             word = 'TAUNT'
-            pat = re.compiler'\b{}\b \b\w+\b'.formatword 
-            pats = pat.findalljogadordaactclass.status
+            pat = re.compiler('\b{}\b \b\w+\b'.formatword) 
+            pats = pat.findall(jogadordaactclass.status)
             pats = strpats
             pats = pats.replace('[', '')
             pats = pats.replace(']', '')
@@ -153,27 +173,25 @@ async def efeitos():
         if jogadorreceptorclass.name == 'Assassin':
             if jogadorreceptorclass.atk > jogadordaactclass.atk:
                 danobase1 -= 1
-async def 
 async def diagnosticodeatk1():
     datk1 = True
     global acao1
     global criticalhit1
     global danobase1
     originalhpreceptor = jogadorreceptorclass.hp
-    acts = open'acoes.txt', 'w+'
+    acts = open('acoes.txt', 'w+')
     acao = ''
     if movimento == 'Sword Slash':
       if jogadordaactclass.name == 'Warrior':
-        danobase1 = jogadordaactclass.ataquedano + 10
-        criticalhit1 = jogadordaactclass.ataquecritico + 15
-        atordoamentochance1 = 10 
-        atordoamento = random.randint1, 100
+        danobase1 += jogadordaactclass.SwordSlash
+        criticalhit1 += danobase1 * 1.5
+        wildpower = 'WILD POWER' in jogadorreceptorclass.condicao
+        if wildpower != False:
+            danobase1 = danobase1 * 2
         vuneravel = 'VUNERAVEL ||' in jogadorreceptorclass.status
         smok = 'SMOKE BOMB' in jogadordaactclass.condicao
-        acao += f'|\n'
-        
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        acao += f'|O {jogadordaactclass.name} {jogadordaact} usa um {movimento} em {jogadorreceptor}!\nsleep'
+
         if desviou <= jogadorreceptorclass.taxad:
             
             acao +=f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.\n'
@@ -227,9 +245,9 @@ async def diagnosticodeatk1():
             danobase1 = jogadordaactclass.ataquedano + 8
             criticalhit1 = jogadordaactclass.ataquecritico + 12
             queimarchance = 25
-            queimou = random.randint1, 100
-            desviou = random.randint1, 100
-            critico = random.randint1, 100
+            queimou = 
+            desviou = 
+            critico = 
             if jogadordaact in e1 != False:
              if jogador2classe.name == 'Squire':
                 if jogadordaactclass.escudo >= 1:
@@ -529,13 +547,13 @@ async def diagnosticodeatk1():
     elif movimento == 'Believe of Burn':
       if jogadordaactclass.name == 'Mage':
         acao1 = 'Believe of Burn'
-        desviou = random.randint1, 100
+        desviou = 
         queimarchance = 100 
         queimado = 'QUEIMANDO ||' in jogadorreceptorclass.status
         if 'TAUNT' in jogadordaactclass.status != False:
             word = 'TAUNT'
-            pat = re.compiler'\b{}\b \b\w+\b'.formatword 
-            pats = pat.findalljogadordaactclass.status
+            pat = re.compiler('\b{}\b \b\w+\b'.formatword) 
+            pats = pat.findall(jogadordaactclass.status)
             pats = strpats
             pats = pats.replace('[', '')
             pats = pats.replace(']', '')
@@ -581,8 +599,8 @@ async def diagnosticodeatk1():
     elif movimento == 'Ignite':
         if jogadordaactclass.name == 'Mage':
             acao1 = 'Ignite'
-            desviou = random.randint1, 100
-            critico = random.randint1, 100
+            desviou = 
+            critico = 
             danobase1 = jogadordaactclass.ataquedano + 10
             criticalhit1 = jogadordaactclass.ataquecritico + 15
             danodobrado = jogadordaactclass.ataquequeimado + 20
@@ -663,8 +681,8 @@ async def diagnosticodeatk1():
                         danodobradoecrit += jogadordaactclass.escudo // 10
             if 'TAUNT' in jogadordaactclass.status != False:
               word = 'TAUNT'
-              pat = re.compiler'\b{}\b \b\w+\b'.formatword 
-              pats = pat.findalljogadordaactclass.status
+              pat = re.compiler('\b{}\b \b\w+\b'.formatword) 
+              pats = pat.findall(jogadordaactclass.status)
               pats = strpats
               pats = pats.replace('[', '')
               pats = pats.replace(']', '')
@@ -741,8 +759,8 @@ async def diagnosticodeatk1():
         if jogadordaactclass.name == 'Cleric':
            danobase1 = jogadordaactclass.ataquedano + 10
            criticalhit1 = jogadordaactclass.ataquecritico + 15
-           desviou = random.randint1, 100
-           critico = random.randint1, 100
+           desviou = 
+           critico = 
            if jogadordaact in e1 != False:
              if jogador2classe.name == 'Squire':
                 if jogadordaactclass.escudo >= 1:
@@ -795,8 +813,8 @@ async def diagnosticodeatk1():
                         criticalhit1 += jogadordaactclass.escudo // 10
            if 'TAUNT' in jogadordaactclass.status != False:
             word = 'TAUNT'
-            pat = re.compiler'\b{}\b \b\w+\b'.formatword 
-            pats = pat.findalljogadordaactclass.status
+            pat = re.compiler('\b{}\b \b\w+\b'.formatword) 
+            pats = pat.findall(jogadordaactclass.status)
             pats = strpats
             pats = pats.replace('[', '')
             pats = pats.replace(']', '')
@@ -852,10 +870,10 @@ async def diagnosticodeatk1():
         if jogadordaactclass.name == 'Ninja':
             danobase1 = jogadordaactclass.ataquedano + 6
             criticalhit1 = jogadordaactclass.ataquecritico + 9
-            desviou = random.randint1, 100
-            critico = random.randint1, 100
+            desviou = 
+            critico = 
             sangramento = 60
-            sangrou = random.randint1, 100
+            sangrou = 
             if jogadordaact in e1 != False:
              if jogador2classe.name == 'Squire':
                 if jogadordaactclass.escudo >= 1:
@@ -989,8 +1007,8 @@ async def diagnosticodeatk1():
             
             danobase1 = jogadordaactclass.atkb 
             criticalhit1 = danobase1 * 1.5
-            desviou = random.randint1, 100
-            critico = random.randint1, 100
+            desviou = 
+            critico = 
             if jogadordaact in e1 != False:
              if jogador2classe.name == 'Squire':
                 if jogadordaactclass.escudo >= 1:
@@ -1255,8 +1273,8 @@ async def diagnosticodeatk1():
             
             criticalhit1 = danobase1 * 1.5
             criticalhit2 = danobaseatordoado * 1.5
-            desviou = random.randint1, 100
-            critico = random.randint1, 100
+            desviou = 
+            critico = 
             if 'Atordoado ||' in jogadorreceptorclass.status != False:
                 
                f'groupchat-{auth}-dpwhen|O {jogadordaactclass.name} {jogadordaact} usa um Hook Arm em {jogadorreceptor}!'
@@ -1330,10 +1348,9 @@ async def diagnosticodeatk1():
         if jogadordaactclass.name == 'Druid':
             danobase1 = jogadordaactclass.ataquedano + 5
             criticalhit1 = jogadordaactclass.ataquecritico + 7.5
-            desviou = random.randint1, 100
-            critico = random.randint1, 100
-            atordoamento = 20
-            atordoamentorandint = random.randint1, 100
+            desviou = 
+            critico =  20
+            atordoamentorandint = 
            f'groupchat-{auth}-dpwhen|O {jogadordaactclass.name} {jogadordaact} usa Dual Vine em {jogadorreceptor}!'
            f'groupchat-{auth}-dpwhen|Primeira vinha:'
             if desviou <= jogadorreceptorclass.taxad:
@@ -1463,8 +1480,8 @@ async def diagnosticodeatk1():
         if jogadordaactclass.name == 'Assasasin':
           danobase1 = jogadordaactclass.ataquedano + 7
           criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-          desviou = random.randint1, 100
-          critico = random.randint1, 100
+          desviou = 
+          critico = 
           f'groupchat-{auth}-dpwhen|{jogadordaact} usa Stakeout em {jogadorreceptor}.'
           if desviou <= jogadorreceptorclass.taxad:
                f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1493,8 +1510,8 @@ async def diagnosticodeatk1():
         if jogadordaactclass.name == 'Assassin':
           danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
           criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-          desviou = random.randint1, 100
-          critico = random.randint1, 100
+          desviou = 
+          critico = 
           jogadordaactclass.condicao += 'MANIAC ||'
            f'groupchat-{auth}-dpwhen|{jogadordaact} usa Maniac em {jogadorreceptor}.'
           if desviou <= jogadorreceptorclass.taxad:
@@ -1542,10 +1559,10 @@ async def diagnosticodeatk1():
             danobase1 = danobase1 + 2
             jogadordaactclass.condicao = jogadordaactclass.condicao.replace'ATKB MGC ||', ''
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         queimadurachance = 25
-        queimou = random.randint1, 100
+        queimou = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1580,8 +1597,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Cleric {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1610,8 +1627,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Ninja {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1640,8 +1657,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Pirate {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1670,8 +1687,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Druid {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1700,8 +1717,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Squire {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1730,8 +1747,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Assassin {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= jogadorreceptorclass.taxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1760,8 +1777,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O Archer {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb + jogadordaactclass.stack
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         momentaneotaxad = jogadorreceptorclass.taxad - 30
         if desviou <= momentaneotaxad:
             
@@ -1791,8 +1808,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O  {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         if desviou <= momentaneotaxad:
             
            f'groupchat-{auth}-dpwhen|{jogadorreceptor} desviou! Não foi atingido.'
@@ -1823,8 +1840,8 @@ async def diagnosticodeatk1():
        f'groupchat-{auth}-dpwhen|O  {jogadordaact} usou um ataque básico em {jogadorreceptor}!'
         danobase1 = jogadordaactclass.ataquedano + jogadordaactclass.atkb
         criticalhit1 = jogadordaactclass.ataquecritico + danobase1*1.5
-        desviou = random.randint1, 100
-        critico = random.randint1, 100
+        desviou = 
+        critico = 
         momentaneotaxad = jogadorreceptorclass.taxad - 30
         if desviou <= momentaneotaxad:
             
@@ -1876,6 +1893,8 @@ async def diagnosticodeatk1():
                           break
                       else:
                           continue
+      if jogadorreceptorclass.name == 'Assassin':
+          jogadordaactclass.hp -= jogadorreceptorclass.atkb
       if 'DAMAGE REFLECTIONACT' in jogadorreceptorclass.condicao != False:
           metade_dano_sofrido = jogadorreceptorclass.danosofrido / 2
           jogadordaactclass.hp -= metade_dano_sofrido 

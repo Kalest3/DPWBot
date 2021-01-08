@@ -36,8 +36,6 @@ class cleric():
     atkb = atk / 10
     status = ''
     condicao = 'BEYOND HELP||'
-    ataquedano = 0
-    ataquecritico = 0 
     Equilibrium = 10
     danosofrido = 0
     ignoretd = 0
