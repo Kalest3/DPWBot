@@ -1,0 +1,4 @@
+*.txt
+*.log
+attack.py
+__pycache__
