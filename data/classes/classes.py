@@ -149,3 +149,4 @@ class clairvoyant():
     Prevision = 8
     danosofrido = 0
     ignoretd = 0
+all = [clairvoyant, assassin]

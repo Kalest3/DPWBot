@@ -1,3 +1,5 @@
 *.txt
 *.log
+config.json
 __pycache__
+test.py
